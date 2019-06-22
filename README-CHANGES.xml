@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<c:changelog project="com.io7m.jsay" xmlns:c="urn:com.io7m.changelog:4.0">
+  <c:releases>
+    <c:release date="2019-06-22T17:37:46+00:00" ticket-system="com.github.io7m.jsay" version="0.0.1">
+      <c:changes>
+        <c:change date="2019-06-22T17:37:46+00:00" summary="Initial public release"/>
+      </c:changes>
+    </c:release>
+  </c:releases>
+  <c:ticket-systems>
+    <c:ticket-system default="true" id="com.github.io7m.jsay" url="https://www.github.com/io7m/jsay/issues/"/>
+  </c:ticket-systems>
+</c:changelog>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+
+  <Match>
+    <Or>
+      <Bug pattern="IMC_IMMATURE_CLASS_NO_TOSTRING"/>
+      <Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD"/>
+      <Bug pattern="CRLF_INJECTION_LOGS" />
+      <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
+      <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
+      <Bug pattern="LO_SUSPECT_LOG_CLASS"/>
+    </Or>
+  </Match>
+
+</FindBugsFilter>
