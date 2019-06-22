@@ -14,7 +14,7 @@
   <packaging>jar</packaging>
 
   <name>com.io7m.jsay</name>
-  <description>DNS stress tester</description>
+  <description>Tiny JMS text message sender</description>
   <url>http://github.com/io7m/jsay</url>
 
   <properties>
