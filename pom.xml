@@ -10,7 +10,7 @@
 
   <groupId>com.io7m.jsay</groupId>
   <artifactId>com.io7m.jsay</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
 
   <name>com.io7m.jsay</name>
