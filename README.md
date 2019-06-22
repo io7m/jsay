@@ -34,6 +34,10 @@ INFO [main] com.io7m.jsay.Main: Usage: jsay [options]
       Possible Values: [TRACE, DEBUG, INFO, WARN, ERROR]
 ```
 
+The package uses [jcommander](http://www.jcommander.org/) to process command line arguments,
+and therefore supports [placing arguments into a file](http://www.jcommander.org/#__syntax)
+that can be referenced using `@` syntax.
+
 # Example
 
 To send the contents of `file.txt` to the `someQueue` queue on the message broker at `messaging.example.com` using
