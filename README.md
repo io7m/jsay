@@ -38,6 +38,18 @@ The package uses [jcommander](http://www.jcommander.org/) to process command lin
 and therefore supports [placing arguments into a file](http://www.jcommander.org/#__syntax)
 that can be referenced using `@` syntax.
 
+# Protocols
+
+The package is only tested against [ActiveMQ](https://activemq.apache.org/components/artemis/) but
+should be able to talk to any broker that speaks one of the following wire protocols:
+
+* [ActiveMQ Core](https://activemq.apache.org/components/artemis/documentation/latest/core.html)
+* [AMQP](https://www.amqp.org/)
+* [HornetQ](https://en.wikipedia.org/wiki/HornetQ)
+* [MQTT](https://mqtt.org/)
+* [OpenWire](https://activemq.apache.org/openwire.html)
+* [STOMP](https://stomp.github.io/)
+
 # Example
 
 To send the contents of `file.txt` to the `someQueue` queue on the message broker at `messaging.example.com` using
