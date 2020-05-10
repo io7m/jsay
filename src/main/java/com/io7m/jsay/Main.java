@@ -124,20 +124,21 @@ public final class Main
     final var options =
       new CommandLineOptions();
 
+    final var console = new StringConsole();
     final var commander =
       JCommander.newBuilder()
         .addObject(options)
         .programName("jsay")
+        .console(console)
         .build();
 
     try {
       commander.parse(args);
     } catch (final ParameterException e) {
       LOG.error("parameter error: {}", e.getMessage());
-      final var text = new StringBuilder(128);
-      commander.usage(text);
+      commander.usage();
       LOG.info("{}", packageVersion());
-      LOG.info(text.toString());
+      LOG.info("{}", console.builder());
       throw e;
     }
 
