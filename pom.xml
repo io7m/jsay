@@ -70,8 +70,8 @@
   </distributionManagement>
 
   <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/io7m/jsay</url>
+    <system>GitHub Actions</system>
+    <url>https://github.com/jsay/actions</url>
   </ciManagement>
 
   <dependencies>
