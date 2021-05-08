@@ -34,6 +34,10 @@ import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The main <tt>jsay</tt> program.
+ */
+
 public final class Main
 {
   private static final Logger LOG = LoggerFactory.getLogger(Main.class);
@@ -102,6 +106,14 @@ public final class Main
     private Path file = Paths.get("/dev/stdin");
   }
 
+  /**
+   * The main entry point.
+   *
+   * @param args Command-line arguments
+   *
+   * @throws Exception On errors
+   */
+
   public static void main(
     final String[] args)
     throws Exception
@@ -167,14 +179,18 @@ public final class Main
 
     LOG.debug("creating connection factory");
     try (var connectionFactory =
-           ActiveMQJMSClient.createConnectionFactory(options.brokerURI.toString(), "jsay")) {
+           ActiveMQJMSClient.createConnectionFactory(
+             options.brokerURI.toString(),
+             "jsay")) {
 
       LOG.debug("creating connection");
       try (var connection = connectionFactory.createConnection(
         options.brokerUser, options.brokerPassword)) {
 
         LOG.debug("creating session");
-        try (var session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE)) {
+        try (var session = connection.createSession(
+          false,
+          Session.AUTO_ACKNOWLEDGE)) {
 
           LOG.debug("creating queue");
           final var queue = session.createQueue(options.address);
@@ -188,7 +204,8 @@ public final class Main
             message.writeBytes(text.getBytes(StandardCharsets.UTF_8));
 
             if (options.expiry != null) {
-              final var time = DateTimeFormatter.ISO_OFFSET_DATE_TIME.parse(options.expiry.trim());
+              final var time = DateTimeFormatter.ISO_OFFSET_DATE_TIME.parse(
+                options.expiry.trim());
               message.setJMSExpiration(Instant.from(time).toEpochMilli());
             }
 
