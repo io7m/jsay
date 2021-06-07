@@ -24,8 +24,6 @@ import org.apache.activemq.artemis.api.jms.ActiveMQJMSClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jms.BytesMessage;
-import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import java.io.IOException;
 import java.net.URI;
