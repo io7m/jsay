@@ -24,7 +24,7 @@ import org.apache.activemq.artemis.api.jms.ActiveMQJMSClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jms.Session;
+import javax.jms.Destination;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -33,6 +33,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+
+import static javax.jms.Session.AUTO_ACKNOWLEDGE;
+
+/**
+ * The main <tt>jsay</tt> program.
+ */
 
 public final class Main
 {
@@ -97,10 +103,25 @@ public final class Main
 
     @Parameter(
       required = false,
+      names = "--topic",
+      arity = 1,
+      description = "The destination is a topic, not a queue.")
+    private boolean topic;
+
+    @Parameter(
+      required = false,
       names = "--file",
       description = "The message file (if not specified, data is read from stdin)")
     private Path file = Paths.get("/dev/stdin");
   }
+
+  /**
+   * The main entry point.
+   *
+   * @param args Command-line arguments
+   *
+   * @throws Exception On errors
+   */
 
   public static void main(
     final String[] args)
@@ -167,20 +188,28 @@ public final class Main
 
     LOG.debug("creating connection factory");
     try (var connectionFactory =
-           ActiveMQJMSClient.createConnectionFactory(options.brokerURI.toString(), "jsay")) {
+           ActiveMQJMSClient.createConnectionFactory(
+             options.brokerURI.toString(),
+             "jsay")) {
 
       LOG.debug("creating connection");
       try (var connection = connectionFactory.createConnection(
         options.brokerUser, options.brokerPassword)) {
 
         LOG.debug("creating session");
-        try (var session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE)) {
+        try (var session =
+               connection.createSession(false, AUTO_ACKNOWLEDGE)) {
 
           LOG.debug("creating queue");
-          final var queue = session.createQueue(options.address);
+          final Destination destination;
+          if (options.topic) {
+            destination = session.createTopic(options.address);
+          } else {
+            destination = session.createQueue(options.address);
+          }
 
           LOG.debug("creating producer");
-          try (var producer = session.createProducer(queue)) {
+          try (var producer = session.createProducer(destination)) {
             connection.start();
 
             final var text = readText(options);
@@ -188,7 +217,9 @@ public final class Main
             message.writeBytes(text.getBytes(StandardCharsets.UTF_8));
 
             if (options.expiry != null) {
-              final var time = DateTimeFormatter.ISO_OFFSET_DATE_TIME.parse(options.expiry.trim());
+              final var time =
+                DateTimeFormatter.ISO_OFFSET_DATE_TIME.parse(
+                  options.expiry.trim());
               message.setJMSExpiration(Instant.from(time).toEpochMilli());
             }
 
