@@ -14,7 +14,7 @@
 
   <groupId>com.io7m.jsay</groupId>
   <artifactId>com.io7m.jsay</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>com.io7m.jsay</name>
