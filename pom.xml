@@ -22,7 +22,7 @@
   <url>http://github.com/io7m/jsay</url>
 
   <properties>
-    <io7m.api.previousVersion>0.0.1</io7m.api.previousVersion>
+    <io7m.api.previousVersion>0.0.3</io7m.api.previousVersion>
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <artemis.version>2.17.0</artemis.version>
   </properties>
