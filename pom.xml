@@ -24,7 +24,7 @@
   <properties>
     <io7m.api.previousVersion>0.0.3</io7m.api.previousVersion>
     <maven.javadoc.skip>true</maven.javadoc.skip>
-    <artemis.version>2.17.0</artemis.version>
+    <artemis.version>2.19.1</artemis.version>
   </properties>
 
   <licenses>
